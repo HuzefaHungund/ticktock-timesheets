@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+TickTock - Timesheet Management Application
+A responsive, SaaS-style Timesheet Management application built with Next.js (App Router), TypeScript, NextAuth, and Tailwind CSS, developed according to provided Figma designs and technical assessment requirements.
 
-## Getting Started
+🛠️ Frameworks & Libraries Used
+Framework: Next.js 14/15 (App Router, React Server Components & Client Components)
 
-First, run the development server:
+Language: TypeScript
 
-```bash
+Styling: Tailwind CSS v4
+
+Typography: Inter Font (via next/font/google)
+
+Authentication: NextAuth.js v4 (Credentials Provider with JWT strategy)
+
+Icons: Custom SVG icons matching Figma specifications
+
+Validation & Schemas: Zod
+
+🚀 Setup Instructions
+Follow these steps to run the application locally on your machine:
+
+1. Prerequisites
+Ensure you have Node.js 18.x or higher installed on your system.
+
+2. Clone the Repository
+Bash
+git clone https://github.com/HuzefaHungund/ticktock-timesheets.git
+cd ticktock-timesheets
+3. Install Dependencies
+Bash
+npm install
+4. Configure Environment Variables
+Create a .env.local file in the root directory of the project (alongside package.json):
+
+Code snippet
+NEXTAUTH_SECRET=your_super_secret_key_here_123456789
+NEXTAUTH_URL=http://localhost:3000
+Note: Make sure the file is named .env.local and not .env.local.txt.
+
+5. Run the Development Server
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Demo Credentials
+Use the following credentials on the split-screen login page to authenticate:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Email: user@example.com
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Password: password123
 
-## Learn More
+📝 Key Features & Implementation Details
+Split-Screen Authentication: High-fidelity implementation of the Figma split login screen featuring responsive layout switching, brand summary, and NextAuth session integration.
 
-To learn more about Next.js, take a look at the following resources:
+Interactive Dashboard Table: Complete dynamic table displaying weekly timesheets, color-coded status badges (COMPLETED, INCOMPLETE, MISSING), and dynamic action links (View, Update, Create).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+In-Memory Local API Routes: Built internal Next.js API routes (/api/timesheets) supporting GET, POST, and PUT methods without directly hardcoding data into client components.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Modal Operations: Context-aware modal allowing users to view existing records, update incomplete timesheets, or create new entries.
 
-## Deploy on Vercel
+Filtering & Client-Side Pagination: Integrated dynamic filtering by status and page control logic with customizable items-per-page options (5, 10, 20 per page).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🧠 Assumptions & Notes
+Data Persistence: In accordance with assessment instructions for local/mock endpoints, data is stored in-memory inside the internal API route (app/api/timesheets/route.ts). Restarting the dev server resets mock entries to their default state.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Session Persistence: NextAuth uses JWT session strategies to maintain state across pages without requiring a external database.
+
+Tailwind v4 Configuration: Typography variables (such as Inter font classes) and theme extension directives are configured inside app/globals.css.
